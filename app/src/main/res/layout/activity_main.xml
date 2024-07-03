@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/tv_sample"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:textSize="56sp"
+        android:textStyle="bold|italic"
+        android:scrollbars="vertical"
+        android:lineSpacingExtra="12dp"
+        android:text="A RuntimeShader calculates a per-pixel color based on the output of a user defined Android Graphics Shading Language (AGSL) function.
+Android Graphics Shading Language
+The AGSL syntax is very similar to OpenGL ES Shading Language, but there are some important differences that are highlighted here. Most of these differences are summed up in one basic fact: With GPU shading languages, you are programming a stage of the GPU pipeline. With AGSL, you are programming a stage of the Canvas or RenderNode drawing pipeline.
+In particular, a GLSL fragment shader controls the entire behavior of the GPU between the rasterizer and the blending hardware. That shader does all of the work to compute a color, and the color it generates is exactly what is fed to the blending stage of the pipeline.
+In contrast, AGSL functions exist as part of a larger pipeline. When you issue a Canvas drawing operation, Android (generally) assembles a single GPU fragment shader to do all of the required work. This shader typically includes several pieces."/>
+</LinearLayout>
