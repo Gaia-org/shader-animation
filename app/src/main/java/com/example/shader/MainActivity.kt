@@ -7,12 +7,15 @@ import android.view.Choreographer
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.shader.shaders.gradientBlendAnimShader
 import com.example.shader.shaders.noiseShader
+import com.example.shader.shaders.pipelineZoomShader
 import com.example.shader.view.SimpleShaderAnimationView
 
 class MainActivity : AppCompatActivity(), Choreographer.FrameCallback {
     private lateinit var textView: TextView
+    private lateinit var cardView: CardView
     private var mStartTime: Long = 0L
     private var isStart = false
 
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity(), Choreographer.FrameCallback {
 
     private fun initView() {
         textView = findViewById<TextView>(R.id.tv_sample)
+        cardView = findViewById(R.id.cardContainer)
         textView.post {
 //            applyTextureShader(
 //                textView,
@@ -53,7 +57,7 @@ class MainActivity : AppCompatActivity(), Choreographer.FrameCallback {
         if (time == 0f) {
             return
         }
-        val shader = gradientBlendAnimShader.apply {
+        val shader = pipelineZoomShader.apply {
             setFloatUniform("resolution", resolution)
             setFloatUniform("time", time)
         }
@@ -77,7 +81,7 @@ class MainActivity : AppCompatActivity(), Choreographer.FrameCallback {
     }
 
     override fun doFrame(frameTimeNanos: Long) {
-        if (textView.width == 0 || textView.height == 0) {
+        if (cardView.width == 0 || cardView.height == 0) {
             Choreographer.getInstance().postFrameCallback(this)
             return
         }
@@ -88,9 +92,9 @@ class MainActivity : AppCompatActivity(), Choreographer.FrameCallback {
             val time = (frameTimeNanos - mStartTime) / 1000000f
             val secondTime = time / 1000f
             applyAnimShader(
-                textView,
-//                floatArrayOf(textView.width.toFloat(), textView.height.toFloat()),
-                floatArrayOf(textView.width.toFloat() - 500f, textView.height.toFloat() - 200f),
+                cardView,
+                floatArrayOf(cardView.width.toFloat(), cardView.height.toFloat()),
+//                floatArrayOf(textView.width.toFloat() - 500f, textView.height.toFloat() - 200f),
                 secondTime
             )
         }
