@@ -4,7 +4,6 @@ import android.view.Choreographer
 
 /**
  * Used for listening frame time with second unit.
- *
  */
 object FrameUpdateMonitor {
     @Volatile
@@ -33,7 +32,6 @@ object FrameUpdateMonitor {
             if (mStartTime == 0L) {
                 mStartTime = frameTimeNanos
             } else {
-                //frameTimeNanos的单位是纳秒,这里需要计算时间差,然后转成毫秒
                 val time = (frameTimeNanos - mStartTime) / 1000000f
                 val secondTime = time / 1000f
                 mListener.invoke(secondTime)
